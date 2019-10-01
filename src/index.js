@@ -37,9 +37,14 @@ const MORSE_TABLE = {
     '-----':  '0',
 };
 
-function decode(expr) {
+//function decode(expr) {
     // write your solution here
-}
+//}
+
+const bitsToSymbols = (s) => s.replace(/00/g, '').replace(/10/g,'.').replace(/11/g, '-');
+const chunkString = (s,chunk) => s.match(/.{1,10}/g); 
+
+const decode = (expr) => expr.split('**********').map( e => chunkString(e).map( e => MORSE_TABLE[bitsToSymbols(e)] ).join('') ).join(' ');
 
 module.exports = {
     decode
